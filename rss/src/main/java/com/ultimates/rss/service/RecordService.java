@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RecordService {
 
-    Record getRecord(String username, String gameId);
+    Record getRecord(String username, int gameId);
 
     List<RecordList> getRecords(String username);
 
