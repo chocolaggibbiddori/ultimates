@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>검색 화면</title>
+</head>
+<body>
+    <form th:action="@{/rss}", method="POST">
+        <select name="condition">
+            <option value="nickname">닉네임</option>
+            <option value="champion">챔피언</option>
+        </select>
+        <input type="text" name="name" />
+        <input type="submit" value="검색">
+    </form>
+</body>
+</html>

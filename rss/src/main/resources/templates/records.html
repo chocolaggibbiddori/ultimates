@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <th>
+            <td>챔피언</td>
+            <td>게임수</td>
+            <td>승률</td>
+            <td>KDA</td>
+        </th>
+        <th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </th>
+    </table>
+    <table border="1">
+        <th>
+            <td>승</td>
+            <td><a th:href="@{/rss/'${name}'/1}">챔피언</a></td>
+            <td>KDA</td>
+            <td>팀</td>
+            <td>플레이 시간</td>
+        </th>
+        <th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </th>
+    </table>
+</body>
+</html>
