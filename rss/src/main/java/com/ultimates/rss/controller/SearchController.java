@@ -2,7 +2,7 @@ package com.ultimates.rss.controller;
 
 import com.ultimates.rss.dto.Champ;
 import com.ultimates.rss.dto.MostChamp;
-import com.ultimates.rss.dto.Record;
+import com.ultimates.rss.dto.RecordDetail;
 import com.ultimates.rss.dto.RecordList;
 import com.ultimates.rss.service.RecordService;
 import lombok.extern.slf4j.Slf4j;
@@ -46,10 +46,10 @@ public class SearchController {
     }
 
     @GetMapping("/{name}/{recordId}")
-    public String record(@PathVariable String name, @PathVariable int recordId, Model model) {
+    public String championDetail(@PathVariable String name, @PathVariable int recordId, Model model) {
         log.info("[record] name = {}, recordId = {}", name, recordId);
-        Record record = recordService.getRecord(name, recordId);
-        model.addAttribute("record", record);
+        RecordDetail recordDetail = recordService.getRecord(name, recordId);
+        model.addAttribute("recordDetail", recordDetail);
         return "record";
     }
 
@@ -57,6 +57,7 @@ public class SearchController {
         List<RecordList> recordList = recordService.getRecords(username);
         MostChamp mostChamp = recordService.getMostChamp(username);
 
+        model.addAttribute("username");
         model.addAttribute("recordList", recordList);
         model.addAttribute("mostChamp", mostChamp);
         return "records";
