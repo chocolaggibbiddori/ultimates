@@ -9,10 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +23,22 @@ public class SearchController {
     @Autowired
     public SearchController(RecordService recordService) {
         this.recordService = recordService;
+    }
+
+    @GetMapping
+    public String search() {
+        return "search";
+    }
+
+    @PostMapping
+    public String searchActivity(@RequestParam String condition, @RequestParam String name) {
+        return "redirect:/rss/" + name + "?condition=" + condition;
+    }
+
+    @GetMapping("/{name}")
+    public String records(@PathVariable String name, @RequestParam String condition) {
+        log.info("==>records()");
+        return "records";
     }
 
     @GetMapping("/{name}")
