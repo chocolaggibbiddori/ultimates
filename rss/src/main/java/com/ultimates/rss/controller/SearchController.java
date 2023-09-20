@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,14 +32,9 @@ public class SearchController {
     }
 
     @PostMapping
-    public String searchActivity(@RequestParam String condition, @RequestParam String name) {
-        return "redirect:/rss/" + name + "?condition=" + condition;
-    }
-
-    @GetMapping("/{name}")
-    public String records(@PathVariable String name, @RequestParam String condition) {
-        log.info("==>records()");
-        return "records";
+    public String search(@RequestParam String name, @RequestParam String condition, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("name", name);
+        return "redirect:/rss/{name}?condition=" + condition;
     }
 
     @GetMapping("/{name}")
@@ -74,12 +70,12 @@ public class SearchController {
 
     private enum SearchCondition {
 
-        CHAMPION {
+        NICKNAME {
             @Override
             String search(SearchController controller, String name, Model model) {
                 return controller.searchRecords(name, model);
             }
-        }, NICKNAME {
+        }, CHAMPION {
             @Override
             String search(SearchController controller, String name, Model model) {
                 return controller.searchChamp(name, model);
