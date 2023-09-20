@@ -4,6 +4,7 @@ import com.ultimates.rss.dto.Champ;
 import com.ultimates.rss.dto.MostChamp;
 import com.ultimates.rss.dto.Record;
 import com.ultimates.rss.dto.RecordList;
+import com.ultimates.rss.service.ChampService;
 import com.ultimates.rss.service.RecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,12 @@ import java.util.List;
 public class SearchController {
 
     private final RecordService recordService;
+    private final ChampService champService;
 
     @Autowired
-    public SearchController(RecordService recordService) {
+    public SearchController(RecordService recordService, ChampService champService) {
         this.recordService = recordService;
+        this.champService = champService;
     }
 
     @GetMapping
@@ -55,7 +58,7 @@ public class SearchController {
 
     private String searchRecords(String username, Model model) {
         List<RecordList> recordList = recordService.getRecords(username);
-        MostChamp mostChamp = recordService.getMostChamp(username);
+        MostChamp mostChamp = champService.getMostChamp(username);
 
         model.addAttribute("recordList", recordList);
         model.addAttribute("mostChamp", mostChamp);
@@ -63,7 +66,7 @@ public class SearchController {
     }
 
     private String searchChamp(String champName, Model model) {
-        Champ champ = recordService.getChampDetail(champName);
+        Champ champ = champService.getChampDetail(champName);
         model.addAttribute("champ", champ);
         return "champ";
     }
