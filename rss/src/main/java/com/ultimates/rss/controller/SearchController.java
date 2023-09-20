@@ -52,6 +52,7 @@ public class SearchController {
     public String record(@PathVariable String name, @PathVariable int recordId, Model model) {
         log.info("[record] name = {}, recordId = {}", name, recordId);
         Record record = recordService.getRecord(name, recordId);
+
         model.addAttribute("record", record);
         return "record";
     }
@@ -67,6 +68,7 @@ public class SearchController {
 
     private String searchChamp(String champName, Model model) {
         Champ champ = champService.getChampDetail(champName);
+
         model.addAttribute("champ", champ);
         return "champ";
     }
