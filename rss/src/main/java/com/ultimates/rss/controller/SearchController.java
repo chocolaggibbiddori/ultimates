@@ -46,7 +46,7 @@ public class SearchController {
     }
 
     @GetMapping("/{name}/{recordId}")
-    public String championDetail(@PathVariable String name, @PathVariable int recordId, Model model) {
+    public String recordDetail(@PathVariable String name, @PathVariable int recordId, Model model) {
         log.info("[record] name = {}, recordId = {}", name, recordId);
         RecordDetail recordDetail = recordService.getRecord(name, recordId);
         model.addAttribute("recordDetail", recordDetail);
@@ -57,7 +57,6 @@ public class SearchController {
         List<RecordList> recordList = recordService.getRecords(username);
         MostChamp mostChamp = recordService.getMostChamp(username);
 
-        model.addAttribute("username");
         model.addAttribute("recordList", recordList);
         model.addAttribute("mostChamp", mostChamp);
         return "records";
