@@ -2,7 +2,7 @@ package com.ultimates.rss.controller;
 
 import com.ultimates.rss.dto.Champ;
 import com.ultimates.rss.dto.MostChamp;
-import com.ultimates.rss.dto.Record;
+import com.ultimates.rss.dto.RecordDetail;
 import com.ultimates.rss.dto.RecordList;
 import com.ultimates.rss.service.ChampService;
 import com.ultimates.rss.service.RecordService;
@@ -49,11 +49,12 @@ public class SearchController {
     }
 
     @GetMapping("/{name}/{recordId}")
-    public String record(@PathVariable String name, @PathVariable int recordId, Model model) {
+    public String recordDetail(@PathVariable String name, @PathVariable int recordId, Model model) {
         log.info("[record] name = {}, recordId = {}", name, recordId);
-        Record record = recordService.getRecord(name, recordId);
 
-        model.addAttribute("record", record);
+        RecordDetail recordDetail = recordService.getRecord(name, recordId);
+        model.addAttribute("recordDetail", recordDetail);
+
         return "record";
     }
 

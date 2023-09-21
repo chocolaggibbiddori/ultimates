@@ -7,12 +7,12 @@ import java.util.List;
 
 @Getter
 @ToString
-public class Record {
+public class RecordDetail {
 
     private final Long id;
     private final List<Player> playerList;
 
-    public Record(Long id, Player... players) {
+    public RecordDetail(Long id, Player... players) {
         this.id = id;
         this.playerList = List.of(players);
     }

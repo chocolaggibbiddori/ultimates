@@ -1,6 +1,8 @@
 package com.ultimates.rss.service;
 
-import com.ultimates.rss.dto.Record;
+import com.ultimates.rss.dto.Champ;
+import com.ultimates.rss.dto.MostChamp;
+import com.ultimates.rss.dto.RecordDetail;
 import com.ultimates.rss.dto.RecordList;
 import com.ultimates.rss.exception.IllegalUserException;
 
@@ -17,7 +19,7 @@ public interface RecordService {
      * @throws IllegalArgumentException {@code gameId}이 존재하지 않는 게임이라면 이 예외가 발생
      * @author chocolaggibbiddori
      */
-    Record getRecord(String username, int gameId);
+    RecordDetail getRecord(String username, int recordId);
 
     /**
      * 해당 유저의 전체 게임 리스트를 반환하는 메서드
