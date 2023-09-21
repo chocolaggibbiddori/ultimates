@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ChampDataDto {
-    private int idx;
+    private Long idx;
     private String champName;
     private String qSkill;
     private String wSkill;

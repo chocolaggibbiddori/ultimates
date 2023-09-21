@@ -23,13 +23,18 @@ public class ChampDataService {
         this.champRepository = champRepository;
     }
 
-    public ResponseEntity<List<ChampDataDto>> getUserDataFromDatabase() {
+    public ResponseEntity<List<ChampDataDto>> getChampDataFromDatabase() {
         List<ChampData> champDataList = champRepository.findAll();
         List<ChampDataDto> champDataDtoList = new ArrayList<>();
 
         for (ChampData champData : champDataList) {
             ChampDataDto champDataDto = new ChampDataDto();
             champDataDto.setIdx(champData.getIdx());
+            champDataDto.setChampName(champData.getChampName());
+            champDataDto.setQSkill(champData.getQSkill());
+            champDataDto.setWSkill(champData.getWSkill());
+            champDataDto.setESkill(champData.getESkill());
+            champDataDto.setRSkill(champData.getRSkill());
 
 
             champDataDtoList.add(champDataDto);
