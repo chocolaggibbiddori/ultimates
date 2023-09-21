@@ -7,7 +7,9 @@
 <body>
     <h2 th:text="${username}">유저 닉네임</h2>
     <hr>
+
         <table border="1">
+            <caption th:style="'color: rgba(128, 128, 128, 0.3)'">Most Champion</caption>
             <tr>
                 <th>챔피언</th>
                 <th>게임수</th>
@@ -25,6 +27,7 @@
                 <td th:text="${mostChamp.kda}">모스트 챔피언 KDA 평점</td>
             </tr>
         </table>
+
     <hr>
     <div>
         <table border="1">
