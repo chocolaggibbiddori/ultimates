@@ -10,10 +10,12 @@ import java.util.List;
 public class RecordDetail {
 
     private final Long id;
-    private final List<Player> playerList;
+    private final List<Player> winnerList;
+    private final List<Player> loserList;
 
-    public RecordDetail(Long id, Player... players) {
+    public RecordDetail(Long id, List<Player> winnerList, List<Player> loserList) {
         this.id = id;
-        this.playerList = List.of(players);
+        this.winnerList = winnerList;
+        this.loserList = loserList;
     }
 }
