@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class MostChamp {
+public class MostChampList {
 
     private final String champName;
     private final KDA kda;
@@ -14,7 +14,7 @@ public class MostChamp {
     private final int playCount;
 
     @Builder
-    public MostChamp(String champName, KDA kda, double rateOfWin, int playCount) {
+    public MostChampList(String champName, KDA kda, double rateOfWin, int playCount) {
         this.champName = champName;
         this.kda = kda;
         this.rateOfWin = rateOfWin;
