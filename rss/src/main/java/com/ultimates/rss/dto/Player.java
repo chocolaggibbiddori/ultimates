@@ -14,13 +14,15 @@ public class Player {
     private final int receivedDamage;
     private final Tier tier;
     private final KDA kda;
+    private final String champName;
 
     @Builder
-    public Player(String nickname, int damage, int receivedDamage, Tier tier, KDA kda) {
+    public Player(String nickname, int damage, int receivedDamage, Tier tier, KDA kda, String champName) {
         this.nickname = nickname;
         this.damage = damage;
         this.receivedDamage = receivedDamage;
         this.tier = tier;
         this.kda = kda;
+        this.champName = champName;
     }
 }
