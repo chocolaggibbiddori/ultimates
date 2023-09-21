@@ -5,7 +5,11 @@
     <title>게임 상세</title>
 </head>
 <body>
-<table th:object="${recordDetail}" border="2">
+<div th:insert="~{fragment/search :: search}"></div>
+<br>
+<table border="2"
+       th:object="${recordDetail}"
+       th:style="${recordDetail.myResult.toString() == 'WIN' ? 'background-color: lightblue;' : 'background-color: pink;'}">
     <tr>
         <th>티어</th>
         <th>닉네임</th>
@@ -13,10 +17,12 @@
         <th>가한 피해량</th>
         <th>받은 피해량</th>
     </tr>
-    <tr th:each="winnerPlayer : *{winnerList}">
-        <td th:text="${winnerPlayer.tier}"></td>
-        <td th:text="${winnerPlayer.nickname}"></td>
-        <td th:object="${winnerPlayer.kda}">
+    <tr th:each="myTeamPlayer : *{myTeamList}"
+        th:onclick="'location.href=\'' + @{/rss/{username}?condition=nickname(username=${myTeamPlayer.nickname})} + '\''"
+        style="cursor: pointer;">
+        <td th:text="${myTeamPlayer.tier}"></td>
+        <td th:text="${myTeamPlayer.nickname}"></td>
+        <td th:object="${myTeamPlayer.kda}">
             <ul>
                 <li>킬 : <span th:text="*{kill}"></span></li>
                 <li>데스 : <span th:text="*{death}"></span></li>
@@ -24,12 +30,14 @@
                 <li>평점 : <span th:text="*{rate}"></span></li>
             </ul>
         </td>
-        <td th:text="${winnerPlayer.damage}"></td>
-        <td th:text="${winnerPlayer.receivedDamage}"></td>
+        <td th:text="${myTeamPlayer.damage}"></td>
+        <td th:text="${myTeamPlayer.receivedDamage}"></td>
     </tr>
 </table>
 <br>
-<table th:object="${recordDetail}" border="2">
+<table border="2"
+       th:object="${recordDetail}"
+       th:style="${recordDetail.myResult.toString() == 'LOSE' ? 'background-color: lightblue;' : 'background-color: pink;'}">
     <tr>
         <th>티어</th>
         <th>닉네임</th>
@@ -37,10 +45,12 @@
         <th>가한 피해량</th>
         <th>받은 피해량</th>
     </tr>
-    <tr th:each="loserPlayer : *{loserList}">
-        <td th:text="${loserPlayer.tier}"></td>
-        <td th:text="${loserPlayer.nickname}"></td>
-        <td th:object="${loserPlayer.kda}">
+    <tr th:each="enemyTeamPlayer : *{enemyTeamList}"
+        th:onclick="'location.href=\'' + @{/rss/{username}?condition=nickname(username=${enemyTeamPlayer.nickname})} + '\''"
+        style="cursor: pointer;">
+        <td th:text="${enemyTeamPlayer.tier}"></td>
+        <td th:text="${enemyTeamPlayer.nickname}"></td>
+        <td th:object="${enemyTeamPlayer.kda}">
             <ul>
                 <li>킬 : <span th:text="*{kill}"></span></li>
                 <li>데스 : <span th:text="*{death}"></span></li>
@@ -48,8 +58,8 @@
                 <li>평점 : <span th:text="*{rate}"></span></li>
             </ul>
         </td>
-        <td th:text="${loserPlayer.damage}"></td>
-        <td th:text="${loserPlayer.receivedDamage}"></td>
+        <td th:text="${enemyTeamPlayer.damage}"></td>
+        <td th:text="${enemyTeamPlayer.receivedDamage}"></td>
     </tr>
 </table>
 </body>

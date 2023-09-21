@@ -11,7 +11,7 @@ public class KDA {
     private final int kill;
     private final int death;
     private final int assist;
-    private final double rate;
+    private final String rate;
 
     @Builder
     public KDA(int kill, int death, int assist) {
@@ -21,7 +21,7 @@ public class KDA {
         this.rate = calRate();
     }
 
-    private double calRate() {
-        return (double) (kill + assist) / death;
+    private String calRate() {
+        return death == 0 ? "PERFECT" : String.valueOf((double) (kill + assist) / death);
     }
 }
