@@ -48,14 +48,14 @@ public class SearchController {
         return searchCondition.search(this, name, model);
     }
 
-    @GetMapping("/{name}/{recordId}")
-    public String recordDetail(@PathVariable String name, @PathVariable int recordId, Model model) {
-        log.info("[record] name = {}, recordId = {}", name, recordId);
+    @GetMapping("/{username}/{recordId}")
+    public String recordDetail(@PathVariable String username, @PathVariable int recordId, Model model) {
+        log.info("[record] username = {}, recordId = {}", username, recordId);
 
-        RecordDetail recordDetail = recordService.getRecord(name, recordId);
+        RecordDetail recordDetail = recordService.getRecord(username, recordId);
         model.addAttribute("recordDetail", recordDetail);
 
-        return "record";
+        return "recordDetail";
     }
 
     private String searchRecords(String username, Model model) {
