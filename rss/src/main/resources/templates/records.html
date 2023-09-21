@@ -34,7 +34,7 @@
             <td th:text="*{gameResult}">게임의 승패 여부</td>
             <td th:text="*{champ}">플레이한 챔피언</td>
             <td>
-                <b th:text="rateOfKDA">게임 KDA 평점</b>
+                <b th:text="*{rateOfKDA}">게임 KDA 평점</b>
                 <p th:text="*{kill}/*{death}/*{assist}">게임의 KDA</p>
             </td>
             <td>
