@@ -7,7 +7,8 @@ import com.ultimates.rss.dto.RecordList;
 
 import java.util.List;
 
-public interface RecordService {
+public interface
+RecordService {
 
     RecordDetail getRecord(String username, int recordId);
 
@@ -15,5 +16,5 @@ public interface RecordService {
 
     Champ getChampDetail(String champName);
 
-    MostChamp getMostChamp(String username);
+    List<MostChamp> getMostChamp(String username);
 }
