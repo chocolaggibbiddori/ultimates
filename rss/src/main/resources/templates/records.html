@@ -5,35 +5,56 @@
     <title>Title</title>
 </head>
 <body>
-    <table border="1">
-        <th>
-            <td>챔피언</td>
-            <td>게임수</td>
-            <td>승률</td>
-            <td>KDA</td>
-        </th>
-        <th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </th>
+    <h2 th:text="${username}">유저 닉네임</h2>
+    <hr>
+    <table border="1" th:object="${mostChamp}">
+        <tr>
+            <th>챔피언</th>
+            <th>게임수</th>
+            <th>승률</th>
+            <th>KDA</th>
+        </tr>
+        <tr>
+            <td th:text="*{champName}">모스트 챔피언</td>
+            <td th:text="*{playCount}">모스트 챔피언을 플레이한 수</td>
+            <td th:text="*{rateOfWin}">모스트 챔피언 승률</td>
+            <td th:text="*{rateOfKDA}">모스트 챔피언 KDA 평점</td>
+        </tr>
     </table>
-    <table border="1">
-        <th>
-            <td>승</td>
-            <td><a th:href="@{/rss/'${name}'/1}">챔피언</a></td>
-            <td>KDA</td>
-            <td>팀</td>
-            <td>플레이 시간</td>
-        </th>
-        <th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </th>
+    <hr>
+    <table border="1" th:object="${RecordList}">
+        <tr>
+            <th>승</th>
+            <th><a th:href="@{/rss/{name}/1(name=${name})}">챔피언</a></th>
+            <th>KDA</th>
+            <th>팀</th>
+            <th>플레이 시간</th>
+        </tr>
+        <tr>
+            <td th:text="*{gameResult}">게임의 승패 여부</td>
+            <td th:text="*{champ}">플레이한 챔피언</td>
+            <td>
+                <b th:text="rateOfKDA">게임 KDA 평점</b>
+                <p th:text="*{kill}/*{death}/*{assist}">게임의 KDA</p>
+            </td>
+            <td>
+                <div>
+                    <ul>
+                        <li th:text="*{nickname}">블루팀 플레이어 1</li>
+                        <li th:text="*{nickname}">블루팀 플레이어 2</li>
+                        <li th:text="*{nickname}">블루팀 플레이어 3</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li th:text="*{nickname}">레드팀 플레이어1</li>
+                        <li th:text="*{nickname}">레드팀 플레이어2</li>
+                        <li th:text="*{nickname}">레드팀 플레이어3</li>
+                    </ul>
+                </div>
+            </td>
+            <td th:text="*{localDateTime}">게임 플레이 타임</td>
+        </tr>
     </table>
 </body>
 </html>
