@@ -13,18 +13,14 @@ public class Player {
     private final int damage;
     private final int receivedDamage;
     private final Tier tier;
-    private final int kill;
-    private final int death;
-    private final int assist;
+    private final KDA kda;
 
     @Builder
-    public Player(String nickname, int damage, int receivedDamage, Tier tier, int kill, int death, int assist) {
+    public Player(String nickname, int damage, int receivedDamage, Tier tier, KDA kda) {
         this.nickname = nickname;
         this.damage = damage;
         this.receivedDamage = receivedDamage;
         this.tier = tier;
-        this.kill = kill;
-        this.death = death;
-        this.assist = assist;
+        this.kda = kda;
     }
 }
