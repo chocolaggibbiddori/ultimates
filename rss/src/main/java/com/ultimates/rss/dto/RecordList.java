@@ -18,18 +18,20 @@ public class RecordList {
     private final int kill;
     private final int death;
     private final int assist;
+    private final double rateOfKDA;
     private final String champ;
     private final Team team;
     private final String nickname;
 
     @Builder
-    public RecordList(Long id, LocalDateTime localDateTime, GameResult gameResult, int kill, int death, int assist, String champ, Team team, String nickname) {
+    public RecordList(Long id, LocalDateTime localDateTime, GameResult gameResult, int kill, int death, int assist, double rateOfKDA, String champ, Team team, String nickname) {
         this.id = id;
         this.localDateTime = localDateTime;
         this.gameResult = gameResult;
         this.kill = kill;
         this.death = death;
         this.assist = assist;
+        this.rateOfKDA = rateOfKDA;
         this.champ = champ;
         this.team = team;
         this.nickname = nickname;

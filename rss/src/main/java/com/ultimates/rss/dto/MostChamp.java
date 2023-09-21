@@ -12,15 +12,17 @@ public class MostChamp {
     private final int kill;
     private final int death;
     private final int assist;
+    private final double rateOfKDA;
     private final double rateOfWin;
     private final int playCount;
 
     @Builder
-    public MostChamp(String champName, int kill, int death, int assist, double rateOfWin, int playCount) {
+    public MostChamp(String champName, int kill, int death, int assist, double rateOfKDA, double rateOfWin, int playCount) {
         this.champName = champName;
         this.kill = kill;
         this.death = death;
         this.assist = assist;
+        this.rateOfKDA = rateOfKDA;
         this.rateOfWin = rateOfWin;
         this.playCount = playCount;
     }
