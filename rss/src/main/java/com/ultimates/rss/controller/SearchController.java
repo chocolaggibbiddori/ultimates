@@ -60,7 +60,7 @@ public class SearchController {
 
     private String searchRecords(String username, Model model) {
         List<RecordList> recordList = recordService.getRecords(username);
-        List<MostChamp> mostChamp = recordService.getMostChamp(username);
+        List<MostChamp> mostChamp = champService.getMostChamp(username);
 
         model.addAttribute("username",username);
         model.addAttribute("recordList", recordList);
