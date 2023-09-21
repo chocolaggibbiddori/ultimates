@@ -1,7 +1,7 @@
 package com.ultimates.rss.controller;
 
 import com.ultimates.rss.dto.Champ;
-import com.ultimates.rss.dto.MostChamp;
+import com.ultimates.rss.dto.MostChampList;
 import com.ultimates.rss.dto.RecordDetail;
 import com.ultimates.rss.dto.RecordList;
 import com.ultimates.rss.service.ChampService;
@@ -60,11 +60,11 @@ public class SearchController {
 
     private String searchRecords(String username, Model model) {
         List<RecordList> recordList = recordService.getRecords(username);
-        List<MostChamp> mostChamp = champService.getMostChamp(username);
+        List<MostChampList> mostChampList = champService.getMostChampList(username);
 
         model.addAttribute("username",username);
         model.addAttribute("recordList", recordList);
-        model.addAttribute("mostChamp", mostChamp);
+        model.addAttribute("mostChampList", mostChampList);
         return "records";
     }
 
