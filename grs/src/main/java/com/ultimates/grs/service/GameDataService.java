@@ -1,5 +1,6 @@
 package com.ultimates.grs.service;
 
+import com.ultimates.grs.data.dto.ChampOddsDto;
 import com.ultimates.grs.data.dto.GameDataDto;
 import com.ultimates.grs.data.entity.ChampData;
 import com.ultimates.grs.data.entity.GameData;
@@ -24,7 +25,7 @@ public class GameDataService {
         this.gameRepository = gameRepository;
     }
 
-    public ResponseEntity<List<GameDataDto>> getGameDataFromDatabase() {
+    public ResponseEntity<List<GameDataDto>> getGameDataAll() {
         List<GameData> gameDataList = gameRepository.findAll();
         List<GameDataDto> gameDataDtoList = new ArrayList<>();
 
@@ -47,9 +48,28 @@ public class GameDataService {
         }
         return new ResponseEntity<>(gameDataDtoList, HttpStatus.OK);
     }
-    public ResponseEntity<List<GameDataDto>> getChampDataInGameFromDatabase(String champName){
-        List<GameData> gameDataList = gameRepository.findByPlayChamp(champName);
+
+    public ResponseEntity<List<ChampOddsDto>> getChampOdds(String champName){
+        List<GameData> champDataList = gameRepository.findByPlayChamp(champName);
+        List<ChampOddsDto> champOddsList = new ArrayList<>();
+        for (GameData champOdds : champDataList) {
+            ChampOddsDto champOddsDto = new ChampOddsDto();
+            champOddsDto.setPlayChamp(champOdds.getPlayChamp());
+            champOddsDto.setKillCnt(champOdds.getKillCnt());
+            champOddsDto.setDeathCnt(champOdds.getDeathCnt());
+            champOddsDto.setAssistCnt(champOdds.getAssistCnt());
+            champOddsDto.setWin(champOdds.isWin());
+
+            champOddsList.add(champOddsDto);
+        }
+
+        return new ResponseEntity<>(champOddsList, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<GameDataDto>> getUserGameRecord(String userName){
+        List<GameData> gameDataList = gameRepository.findByUserName(userName);
         List<GameDataDto> gameDataDtoList = new ArrayList<>();
+
         for (GameData gameData : gameDataList) {
             GameDataDto gameDataDto = new GameDataDto();
             gameDataDto.setIdx(gameData.getIdx());
@@ -67,7 +87,6 @@ public class GameDataService {
 
             gameDataDtoList.add(gameDataDto);
         }
-
         return new ResponseEntity<>(gameDataDtoList, HttpStatus.OK);
     }
 }

@@ -16,12 +16,10 @@ import java.util.List;
 @Service
 public class ChampDataService {
     private final ChampRepository champRepository;
-    private final GameRepository gameRepository;
 
     @Autowired
-    public ChampDataService(ChampRepository champRepository, GameRepository gameRepository) {
+    public ChampDataService(ChampRepository champRepository) {
         this.champRepository = champRepository;
-        this.gameRepository = gameRepository;
     }
 
     public ResponseEntity<List<ChampDataDto>> getChampDataFromDatabase() {
@@ -43,8 +41,7 @@ public class ChampDataService {
         return new ResponseEntity<List<ChampDataDto>>(champDataDtoList, HttpStatus.OK);
     }
 
-    public ChampData getChampDataOneFromDatabase(String champName) {
-        ChampData champData = champRepository.findByChampName(champName);
+    public ChampData getChampSkillFromDatabase(String champName) {
 
         return champRepository.findByChampName(champName);
     }

@@ -26,6 +26,7 @@ public class ChampController {
         this.champDataService = champDataService;
     }
 
+    // 모든 챔피언 리스트
     @GetMapping("/champdata")
     public ResponseEntity<List<ChampDataDto>> getChampDataAll() {
 
@@ -33,12 +34,12 @@ public class ChampController {
         return responseEntity;
     }
 
+    // 검색한 챔피언이름 기준으로 챔피언 정보
     @GetMapping("/champdata/{champName}")
-    public ChampData getChampSearch(@PathVariable("champName") String champName) {
-        ChampData responseEntity = champDataService.getChampDataOneFromDatabase(champName);
+    public ChampData getChampSkillSet(@PathVariable("champName") String champName) {
+        ChampData responseEntity = champDataService.getChampSkillFromDatabase(champName);
 
         return responseEntity;
     }
-
 
 }

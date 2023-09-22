@@ -9,7 +9,6 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Table(name = "gameData")
 public class GameData {
@@ -40,4 +39,5 @@ public class GameData {
     private int atkDmg;
     @Column(nullable = false)
     private int recDmg;
+
 }

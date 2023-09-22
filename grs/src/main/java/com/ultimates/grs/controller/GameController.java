@@ -1,5 +1,6 @@
 package com.ultimates.grs.controller;
 
+import com.ultimates.grs.data.dto.ChampOddsDto;
 import com.ultimates.grs.data.dto.GameDataDto;
 import com.ultimates.grs.data.entity.ChampData;
 import com.ultimates.grs.data.entity.GameData;
@@ -25,16 +26,26 @@ public class GameController {
         this.gameDataService = gameDataService;
     }
 
+    // 모든 게임에 대한 모든 정보
     @GetMapping("/gamedata")
     public ResponseEntity<List<GameDataDto>> getGameData() {
 
-        ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getGameDataFromDatabase();
+        ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getGameDataAll();
         return responseEntity;
     }
 
-    @GetMapping("/gamedata/{champName}")
-    public ResponseEntity<List<GameDataDto>> getGameSearch(@PathVariable("champName") String champName) {
-        ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getChampDataInGameFromDatabase(champName);
+    // 검색한 챔피언에 대한 킬데스어시
+    @GetMapping("/gamedata/champodds/{champName}")
+    public ResponseEntity<List<ChampOddsDto>> getChampOdds(@PathVariable("champName") String champName) {
+        ResponseEntity<List<ChampOddsDto>> responseEntity = gameDataService.getChampOdds(champName);
+
+        return responseEntity;
+    }
+
+    // 검색한 유저가 했던 게임 정보들
+    @GetMapping("/gamedata/{userName}")
+    public ResponseEntity<List<GameDataDto>> getUserGameRecord(@PathVariable("userName") String userName) {
+        ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getUserGameRecord(userName);
 
         return responseEntity;
     }
