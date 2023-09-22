@@ -4,8 +4,7 @@ import com.ultimates.grs.data.dto.GameDataDto;
 import com.ultimates.grs.data.entity.GameData;
 import com.ultimates.grs.repository.GameRepository;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.ultimates.grs.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +16,14 @@ import java.util.List;
 @Service
 public class GameDataService {
     private final GameRepository gameRepository;
-
+    private final UserRepository userRepository;
     @Autowired
-    public GameDataService(GameRepository gameRepository) {
+    public GameDataService(GameRepository gameRepository, UserRepository userRepository) {
         this.gameRepository = gameRepository;
+        this.userRepository = userRepository;
     }
 
-    public ResponseEntity<List<GameDataDto>> getGameDataFromDatabase() {
+    public ResponseEntity<List<GameDataDto>> getAllGameData() {
         List<GameData> gameDataList = gameRepository.findAll();
         List<GameDataDto> gameDataDtoList = new ArrayList<>();
 
@@ -44,6 +44,76 @@ public class GameDataService {
 
             gameDataDtoList.add(gameDataDto);
         }
-        return new ResponseEntity<>(gameDataDtoList, HttpStatus.OK);
+        return new ResponseEntity<List<GameDataDto>>(gameDataDtoList, HttpStatus.OK);
     }
+    public ResponseEntity<List<GameDataDto>> getUserGameData(String userName) {
+        List<GameData> gameDataList = gameRepository.findByUserName(userName);
+        List<GameDataDto> gameDataDtoList = new ArrayList<>();
+
+        for (GameData gameData : gameDataList) {
+            GameDataDto gameDataDto = new GameDataDto();
+            gameDataDto.setIdx(gameData.getIdx());
+            gameDataDto.setUserName(gameData.getUserName());
+            gameDataDto.setGameNumber(gameData.getGameNumber());
+            gameDataDto.setStartTime(gameData.getStartTime());
+            gameDataDto.setEndTime(gameData.getEndTime());
+            gameDataDto.setPlayChamp(gameData.getPlayChamp());
+            gameDataDto.setKillCnt(gameData.getKillCnt());
+            gameDataDto.setDeath(gameData.getDeath());
+            gameDataDto.setAssist(gameData.getAssist());
+            gameDataDto.setWin(gameData.isWin());
+            gameDataDto.setAtkDmg(gameData.getAtkDmg());
+            gameDataDto.setRecDmg(gameData.getRecDmg());
+
+            gameDataDtoList.add(gameDataDto);
+        }return new ResponseEntity<List<GameDataDto>>(gameDataDtoList, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<GameDataDto>> getAllUserInGameData(String userName, Integer gameNumber) {
+        List<GameData> gameDataList = gameRepository.findByUserNameAndGameNumber(userName, gameNumber);
+        List<GameDataDto> gameDataDtoList = new ArrayList<>();
+
+        for (GameData gameData : gameDataList) {
+            GameDataDto gameDataDto = new GameDataDto();
+            gameDataDto.setIdx(gameData.getIdx());
+            gameDataDto.setUserName(gameData.getUserName());
+            gameDataDto.setGameNumber(gameData.getGameNumber());
+            gameDataDto.setStartTime(gameData.getStartTime());
+            gameDataDto.setEndTime(gameData.getEndTime());
+            gameDataDto.setPlayChamp(gameData.getPlayChamp());
+            gameDataDto.setKillCnt(gameData.getKillCnt());
+            gameDataDto.setDeath(gameData.getDeath());
+            gameDataDto.setAssist(gameData.getAssist());
+            gameDataDto.setWin(gameData.isWin());
+            gameDataDto.setAtkDmg(gameData.getAtkDmg());
+            gameDataDto.setRecDmg(gameData.getRecDmg());
+
+            gameDataDtoList.add(gameDataDto);
+        }
+        return new ResponseEntity<List<GameDataDto>>(gameDataDtoList, HttpStatus.OK);
+    }
+    public ResponseEntity<List<GameDataDto>> getSpectifiedGameData(Integer gameNumber) {
+        List<GameData> gameDataList = gameRepository.findByGameNumber(gameNumber);
+        List<GameDataDto> gameDataDtoList = new ArrayList<>();
+
+        for (GameData gameData : gameDataList) {
+            GameDataDto gameDataDto = new GameDataDto();
+            gameDataDto.setIdx(gameData.getIdx());
+            gameDataDto.setUserName(gameData.getUserName());
+            gameDataDto.setGameNumber(gameData.getGameNumber());
+            gameDataDto.setStartTime(gameData.getStartTime());
+            gameDataDto.setEndTime(gameData.getEndTime());
+            gameDataDto.setPlayChamp(gameData.getPlayChamp());
+            gameDataDto.setKillCnt(gameData.getKillCnt());
+            gameDataDto.setDeath(gameData.getDeath());
+            gameDataDto.setAssist(gameData.getAssist());
+            gameDataDto.setWin(gameData.isWin());
+            gameDataDto.setAtkDmg(gameData.getAtkDmg());
+            gameDataDto.setRecDmg(gameData.getRecDmg());
+
+            gameDataDtoList.add(gameDataDto);
+        }
+        return new ResponseEntity<List<GameDataDto>>(gameDataDtoList, HttpStatus.OK);
+    }
+
 }

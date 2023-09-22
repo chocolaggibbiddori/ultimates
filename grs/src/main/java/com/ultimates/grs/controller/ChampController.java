@@ -1,6 +1,8 @@
 package com.ultimates.grs.controller;
 
+import com.ultimates.grs.data.dto.ChampDataDto;
 import com.ultimates.grs.data.dto.UserDataDto;
+import com.ultimates.grs.service.ChampDataService;
 import com.ultimates.grs.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,17 +16,18 @@ import java.util.List;
 @RequestMapping("/ckjl")
 public class ChampController {
 
-    private final ChamprDataService champDataService;
+    private final ChampDataService champDataService;
 
     @Autowired
-    public ChampController(ChamprDataService champDataService) {
+    public ChampController(ChampDataService champDataService) {
         this.champDataService = champDataService;
     }
 
-    @GetMapping("/champdata")
-    public ResponseEntity<List<ChampDataDto>> getChampData() {
-
-        ResponseEntity<List<ChampDataDto>> responseEntity = champDataService
-        return responseEntity;
-    }
+//    @GetMapping("/champdata")
+//    public ResponseEntity<List<ChampDataDto>> getChampData() {
+//
+//        ResponseEntity<List<ChampDataDto>> responseEntity = champDataService;
+//        ResponseEntity<List<ChampDataDto>> responseEntity;
+//        return responseEntity;}
+//
 }
