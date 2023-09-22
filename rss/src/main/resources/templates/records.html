@@ -5,6 +5,8 @@
     <title>전적 검색</title>
 </head>
 <body>
+<div th:insert="~{fragment/search :: search}"></div>
+<br>
 <h2 th:text="${username}">유저 닉네임</h2>
 <hr>
 <table border="1">
@@ -29,6 +31,7 @@
 <hr>
 <div>
     <table border="1">
+        <caption th:style="'color: rgba(128, 128, 128, 0.3)'">Game records</caption>
         <tr>
             <th>승</th>
             <th>챔피언</th>
@@ -40,7 +43,11 @@
         <tr th:each="record : ${recordList}"
             th:style="'background-color: '+ (${record.gameResult.toString()=='WIN' ? 'lightblue' : 'pink'})">
             <td th:text="${record.gameResult}"></td>
-            <td th:text="${record.champ}"></td>
+            <td>
+                <a th:href="@{/rss/{name}?condition=champion(name=${record.champ})}">
+                    <span th:text="${record.champ}"></span>
+                </a>
+            </td>
             <td th:text="${record.kda}"></td>
             <td th:text="${record.team}"></td>
             <td th:text="${record.localDateTime}"></td>
