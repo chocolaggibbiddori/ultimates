@@ -28,4 +28,6 @@ public interface ChampService {
      * @author chocolaggibbiddori, hojun
      */
     List<MostChampList> getMostChampList(String username);
+
+    Champ getChampDetail(String name, String username);
 }
