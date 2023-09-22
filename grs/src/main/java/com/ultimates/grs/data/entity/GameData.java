@@ -31,14 +31,13 @@ public class GameData {
     @Column(nullable = false)
     private int killCnt;
     @Column(nullable = false)
-    private int death;
+    private int deathCnt;
     @Column(nullable = false)
-    private int assist;
+    private int assistCnt;
     @Column(nullable = false)
     private boolean win;
     @Column(nullable = false)
     private int atkDmg;
     @Column(nullable = false)
     private int recDmg;
-
 }

@@ -1,6 +1,8 @@
 package com.ultimates.grs.controller;
 
 import com.ultimates.grs.data.dto.GameDataDto;
+import com.ultimates.grs.data.entity.ChampData;
+import com.ultimates.grs.data.entity.GameData;
 import com.ultimates.grs.service.GameDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ckjl")
+@RequestMapping("/grs")
 public class GameController {
 
     private final GameDataService gameDataService;
@@ -27,6 +29,13 @@ public class GameController {
     public ResponseEntity<List<GameDataDto>> getGameData() {
 
         ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getGameDataFromDatabase();
+        return responseEntity;
+    }
+
+    @GetMapping("/gamedata/{champName}")
+    public ResponseEntity<List<GameDataDto>> getGameSearch(@PathVariable("champName") String champName) {
+        ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getChampDataInGameFromDatabase(champName);
+
         return responseEntity;
     }
 }

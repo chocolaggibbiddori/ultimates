@@ -17,8 +17,8 @@ public class GameDataDto {
     private Date endTime;
     private String playChamp;
     private int killCnt;
-    private int death;
-    private int assist;
+    private int deathCnt;
+    private int assistCnt;
     private boolean win;
     private int atkDmg;
     private int recDmg;

@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class UserData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // auto_increment 자동 증가
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
     @Column(nullable = false)
