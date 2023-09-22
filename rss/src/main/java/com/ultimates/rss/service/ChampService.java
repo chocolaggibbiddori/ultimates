@@ -1,7 +1,7 @@
 package com.ultimates.rss.service;
 
 import com.ultimates.rss.dto.Champ;
-import com.ultimates.rss.dto.MostChampList;
+import com.ultimates.rss.dto.MostChamp;
 import com.ultimates.rss.exception.IllegalUserException;
 import com.ultimates.rss.exception.NonExistChampException;
 
@@ -27,5 +27,5 @@ public interface ChampService {
      * @throws IllegalUserException {@code username}이 존재하지 않는 유저라면 이 예외가 발생
      * @author chocolaggibbiddori, hojun
      */
-    List<MostChampList> getMostChampList(String username);
+    List<MostChamp> getMostChampList(String username);
 }
