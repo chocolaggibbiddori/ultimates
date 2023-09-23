@@ -40,6 +40,22 @@ public class UserDataService {
         return new ResponseEntity<List<UserDataDto>>(userDataDtoList, HttpStatus.OK);
     }
 
+    public ResponseEntity<List<UserDataDto>> getUserLvFromDatabase(String userName) {
+        List<UserData> userlvList = userRepository.findByUserName(userName);
+        List<UserDataDto> userDataDtoList = new ArrayList<>();
+
+        for (UserData userData : userlvList) {
+            UserDataDto userDataDto = new UserDataDto();
+            userDataDto.setIdx(userData.getIdx());
+            userDataDto.setGameNum(userData.getGameNum());
+            userDataDto.setLv(userData.getLv());
+            userDataDto.setUserName(userData.getUserName());
+            userDataDto.setTier(userData.getTier());
+
+            userDataDtoList.add(userDataDto);
+        }
+        return new ResponseEntity<List<UserDataDto>>(userDataDtoList, HttpStatus.OK);
+      }
     public UserData getUserSearch(String userName) {
        return userRepository.findByUserName(userName);
     }
