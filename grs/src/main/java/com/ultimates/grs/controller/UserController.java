@@ -2,6 +2,7 @@ package com.ultimates.grs.controller;
 
 import com.ultimates.grs.data.dto.GameDataDto;
 import com.ultimates.grs.data.dto.UserDataDto;
+import com.ultimates.grs.data.entity.UserData;
 import com.ultimates.grs.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ public class UserController {
         this.userDataService = userDataService;
     }
 
+    // 모든 유저에 대한 정보 리스트
     @GetMapping("/userdata")
     public ResponseEntity<List<UserDataDto>> getUserData() {
 
@@ -30,7 +32,11 @@ public class UserController {
         return responseEntity;
     }
 
+    // 검색한 유저가 했던 게임 정보들
+    @GetMapping("/userdata/{userName}")
+    public UserData getUserSearchData(@PathVariable("userName") String userName) {
+        UserData responseEntity = userDataService.getUserSearch(userName);
 
-
-
+        return responseEntity;
+    }
 }

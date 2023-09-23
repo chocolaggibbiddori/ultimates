@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name="champData")
 public class ChampData {
