@@ -34,8 +34,8 @@ public class UserController {
 
     // 검색한 유저가 했던 게임 정보들
     @GetMapping("/userdata/{userName}")
-    public UserData getUserSearchData(@PathVariable("userName") String userName) {
-        UserData responseEntity = userDataService.getUserSearch(userName);
+    public ResponseEntity<List<UserDataDto>> getUserSearchData(@PathVariable("userName") String userName) {
+        ResponseEntity<List<UserDataDto>> responseEntity = userDataService.getUserLvFromDatabase(userName);
 
         return responseEntity;
     }

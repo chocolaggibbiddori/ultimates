@@ -55,8 +55,5 @@ public class UserDataService {
             userDataDtoList.add(userDataDto);
         }
         return new ResponseEntity<List<UserDataDto>>(userDataDtoList, HttpStatus.OK);
-      }
-    public UserData getUserSearch(String userName) {
-       return userRepository.findByUserName(userName);
     }
 }

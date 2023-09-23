@@ -32,7 +32,7 @@ public class GameController {
     @GetMapping("/gamedata")
     public ResponseEntity<List<GameDataDto>> getGameData() {
 
-        ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getGameDataAll();
+        ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getAllGameData();
         return responseEntity;
     }
 
@@ -40,14 +40,6 @@ public class GameController {
     @GetMapping("/gamedata/champodds/{champName}")
     public ResponseEntity<List<ChampOddsDto>> getChampOdds(@PathVariable("champName") String champName) {
         ResponseEntity<List<ChampOddsDto>> responseEntity = gameDataService.getChampOdds(champName);
-
-        return responseEntity;
-    }
-
-    // 검색한 유저가 했던 게임 정보들
-    @GetMapping("/gamedata/{userName}")
-    public ResponseEntity<List<GameDataDto>> getUserGameRecord(@PathVariable("userName") String userName) {
-        ResponseEntity<List<GameDataDto>> responseEntity = gameDataService.getUserGameRecord(userName);
 
         return responseEntity;
     }

@@ -103,8 +103,8 @@ public class GameDataService {
             gameDataDto.setEndTime(gameData.getEndTime());
             gameDataDto.setPlayChamp(gameData.getPlayChamp());
             gameDataDto.setKillCnt(gameData.getKillCnt());
-            gameDataDto.setDeath(gameData.getDeath());
-            gameDataDto.setAssist(gameData.getAssist());
+            gameDataDto.setDeathCnt(gameData.getDeathCnt());
+            gameDataDto.setAssistCnt(gameData.getAssistCnt());
             gameDataDto.setWin(gameData.isWin());
             gameDataDto.setAtkDmg(gameData.getAtkDmg());
             gameDataDto.setRecDmg(gameData.getRecDmg());
@@ -126,8 +126,8 @@ public class GameDataService {
             gameDataDto.setEndTime(gameData.getEndTime());
             gameDataDto.setPlayChamp(gameData.getPlayChamp());
             gameDataDto.setKillCnt(gameData.getKillCnt());
-            gameDataDto.setDeath(gameData.getDeath());
-            gameDataDto.setAssist(gameData.getAssist());
+            gameDataDto.setDeathCnt(gameData.getDeathCnt());
+            gameDataDto.setAssistCnt(gameData.getAssistCnt());
             gameDataDto.setWin(gameData.isWin());
             gameDataDto.setAtkDmg(gameData.getAtkDmg());
             gameDataDto.setRecDmg(gameData.getRecDmg());
@@ -149,8 +149,8 @@ public class GameDataService {
             gameDataDto.setEndTime(gameData.getEndTime());
             gameDataDto.setPlayChamp(gameData.getPlayChamp());
             gameDataDto.setKillCnt(gameData.getKillCnt());
-            gameDataDto.setDeath(gameData.getDeath());
-            gameDataDto.setAssist(gameData.getAssist());
+            gameDataDto.setDeathCnt(gameData.getDeathCnt());
+            gameDataDto.setAssistCnt(gameData.getAssistCnt());
             gameDataDto.setWin(gameData.isWin());
             gameDataDto.setAtkDmg(gameData.getAtkDmg());
             gameDataDto.setRecDmg(gameData.getRecDmg());
