@@ -3,6 +3,7 @@ package com.ultimates.grs.data.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -22,9 +23,9 @@ public class GameData {
     @Column(nullable = false)
     private int gameNumber;
     @Column(nullable = false)
-    private Date startTime;
+    private LocalDateTime startTime;
     @Column(nullable = false)
-    private Date endTime;
+    private LocalDateTime endTime;
     @Column(nullable = false)
     private String playChamp;
     @Column(nullable = false)
