@@ -31,5 +31,12 @@ public class ChampData {
 
     @Column(nullable = false)
     private String rSkill;
-    
+
+    public ChampData(String champName, String qSkill, String wSkill, String eSkill, String rSkill) {
+        this.champName = champName;
+        this.qSkill = qSkill;
+        this.wSkill = wSkill;
+        this.eSkill = eSkill;
+        this.rSkill = rSkill;
+    }
 }
