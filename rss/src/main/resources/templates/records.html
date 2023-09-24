@@ -9,7 +9,7 @@
 <br>
 <h2 th:text="${username}">유저 닉네임</h2>
 <hr>
-<table border="1">
+<table border="2">
     <caption th:style="'color: rgba(128, 128, 128, 0.3)'">Most Champion</caption>
     <tr>
         <th>챔피언</th>
@@ -30,13 +30,12 @@
 </table>
 <hr>
 <div>
-    <table border="1">
+    <table border="3">
         <caption th:style="'color: rgba(128, 128, 128, 0.3)'">Game records</caption>
         <tr>
             <th>승</th>
             <th>챔피언</th>
             <th>KDA</th>
-            <th>팀</th>
             <th>플레이 시간</th>
             <th>게임 상세 보기</th>
         </tr>
@@ -49,8 +48,7 @@
                 </a>
             </td>
             <td th:text="${record.kda}"></td>
-            <td th:text="${record.team}"></td>
-            <td th:text="${record.localDateTime}"></td>
+            <td th:text="${record.playHourTime}+'시'+${record.playMinuteTime}+'분'"></td>
             <td><a th:href="@{/rss/{name}/{idx}(name=${username},idx=${record.id})}" th:text="상세보기"></a></td>
         </tr>
     </table>

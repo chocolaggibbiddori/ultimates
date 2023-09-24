@@ -1,5 +1,6 @@
 package com.ultimates.rss.service;
 
+import com.ultimates.rss.dto.RecordDetail;
 import com.ultimates.rss.Tier;
 import com.ultimates.rss.dto.KDA;
 import com.ultimates.rss.dto.Skill;
@@ -27,6 +28,19 @@ public class RestTemplateService {
     private static final String uriString = "http://localhost:9090";
 
     private final RestTemplate restTemplate = new RestTemplate();
+  
+    public List<GameData> getRecords(String username) {
+        URI uri = UriComponentsBuilder
+              .fromUriString("http://localhost:9090")
+              .path("/grs/gamedata/{username}")
+              .queryParam("username", username)
+              .encode()
+              .buildAndExpand(username)
+              .toUri();
+
+        return restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<GameData>>() {
+        }).getBody();
+    }
 
     public List<GameData> getRecord(String username, int gameId) {
         URI uri = UriComponentsBuilder

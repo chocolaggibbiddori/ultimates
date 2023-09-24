@@ -8,13 +8,11 @@ import com.ultimates.rss.dto.RecordDetail;
 import com.ultimates.rss.dto.RecordList;
 import com.ultimates.rss.dto.api.response.GameData;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class RecordServiceImpl implements RecordService {
@@ -69,6 +67,25 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public List<RecordList> getRecords(String username) {
-        return null;
+        List<GameData> recordListsData = restTemplateService.getRecords(username);
+        List<RecordList> recordList = new ArrayList<>();
+
+        for (GameData recordListsDatum : recordListsData) {
+            KDA kda = new KDA(recordListsDatum.getKillCnt(),
+                    recordListsDatum.getDeathCnt(),
+                    recordListsDatum.getAssistCnt());
+
+            RecordList recordListDto = new RecordList(recordListsDatum.getGameNumber(),
+                    recordListsDatum.getStartTime(),
+                    recordListsDatum.getEndTime(),
+                    recordListsDatum.isWin() ? GameResult.WIN : GameResult.LOSE,
+                    kda,
+                    recordListsDatum.getPlayChamp(),
+                    username);
+
+            recordList.add(recordListDto);
+        }
+      
+        return recordList;
     }
 }
