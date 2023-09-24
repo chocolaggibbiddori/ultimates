@@ -1,7 +1,9 @@
 package com.ultimates.rss.dto;
 
 import com.ultimates.rss.GameResult;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -21,8 +23,8 @@ public class RecordList {
     @Builder
     public RecordList(int id, LocalDateTime startTime, LocalDateTime endTime, GameResult gameResult, KDA kda, String champ, String nickname) {
         this.id = id;
-        this.playHourTime = playHourTime(startTime,endTime);
-        this.playMinuteTime = playMinuteTime(startTime,endTime);
+        this.playHourTime = playHourTime(startTime, endTime);
+        this.playMinuteTime = playMinuteTime(startTime, endTime);
         this.gameResult = gameResult;
         this.kda = kda;
         this.champ = champ;
@@ -31,17 +33,11 @@ public class RecordList {
 
     private Long playHourTime(LocalDateTime startTime, LocalDateTime endTime) {
         Duration playTime = Duration.between(startTime, endTime);
-
-        long playHour = playTime.toHours();
-
-        return playHour;
+        return playTime.toHours();
     }
 
     private Long playMinuteTime(LocalDateTime startTime, LocalDateTime endTime) {
         Duration playTime = Duration.between(startTime, endTime);
-
-        long playMinute = playTime.toMinutesPart();
-
-        return playMinute;
+        return (long) playTime.toMinutesPart();
     }
 }

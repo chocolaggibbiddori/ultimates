@@ -62,7 +62,7 @@ public class SearchController {
         List<RecordList> recordList = recordService.getRecords(username);
         List<MostChamp> mostChampList = champService.getMostChampList(username);
 
-        model.addAttribute("username",username);
+        model.addAttribute("username", username);
         model.addAttribute("recordList", recordList);
         model.addAttribute("mostChampList", mostChampList);
         return "records";

@@ -1,6 +1,5 @@
 package com.ultimates.rss.service;
 
-import com.ultimates.rss.dto.RecordDetail;
 import com.ultimates.rss.Tier;
 import com.ultimates.rss.dto.KDA;
 import com.ultimates.rss.dto.Skill;
@@ -28,15 +27,15 @@ public class RestTemplateService {
     private static final String uriString = "http://localhost:9090";
 
     private final RestTemplate restTemplate = new RestTemplate();
-  
+
     public List<GameData> getRecords(String username) {
         URI uri = UriComponentsBuilder
-              .fromUriString("http://localhost:9090")
-              .path("/grs/gamedata/{username}")
-              .queryParam("username", username)
-              .encode()
-              .buildAndExpand(username)
-              .toUri();
+                .fromUriString("http://localhost:9090")
+                .path("/grs/gamedata/{username}")
+                .queryParam("username", username)
+                .encode()
+                .buildAndExpand(username)
+                .toUri();
 
         return restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<GameData>>() {
         }).getBody();
@@ -82,7 +81,8 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
-        if (champDataList == null || champDataList.isEmpty()) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        if (champDataList == null || champDataList.isEmpty())
+            throw new NonExistChampException("[getChampPlayCount] 존재하지 않는 챔프입니다.");
 
         return champDataList.size();
     }
@@ -98,7 +98,8 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
-        if (champDataList == null || champDataList.isEmpty()) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        if (champDataList == null || champDataList.isEmpty())
+            throw new NonExistChampException("[getChampWin] 존재하지 않는 챔프입니다.");
 
         return (int) champDataList.stream().filter(ChampData::isWin).count();
     }
@@ -114,7 +115,8 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
-        if (champDataList == null || champDataList.isEmpty()) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        if (champDataList == null || champDataList.isEmpty())
+            throw new NonExistChampException("[getChampLose] 존재하지 않는 챔프입니다.");
 
         return (int) champDataList.stream().filter(ChampData::isLose).count();
     }
@@ -129,7 +131,7 @@ public class RestTemplateService {
                 .toUri();
 
         ChampSkillData champSkillData = restTemplate.getForObject(uri, ChampSkillData.class);
-        if (champSkillData == null) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        if (champSkillData == null) throw new NonExistChampException("[getChampSkill] 존재하지 않는 챔프입니다.");
 
         return new Skill(champSkillData.getQSkill(), champSkillData.getWSkill(), champSkillData.getESkill(), champSkillData.getRSkill());
     }
@@ -145,7 +147,8 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
-        if (champDataList == null || champDataList.isEmpty()) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        if (champDataList == null || champDataList.isEmpty())
+            throw new NonExistChampException("[getChampKDA] 존재하지 않는 챔프입니다.");
 
         int kill = 0;
         int death = 0;
@@ -168,7 +171,11 @@ public class RestTemplateService {
                 .expand(username)
                 .toUri();
 
-        return restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<GameData>>() {
+        List<GameData> gameDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<GameData>>() {
         }).getBody();
+        if (gameDataList == null || gameDataList.isEmpty())
+            throw new IllegalUserException("[getGameDataList] 존재하지 않는 유저입니다.");
+
+        return gameDataList;
     }
 }

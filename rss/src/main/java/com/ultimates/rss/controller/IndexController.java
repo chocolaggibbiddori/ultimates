@@ -5,10 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class IndexController {
-    
-    @GetMapping(value = "/")
+
+    @GetMapping("/")
     public String index() {
         return "redirect:/rss";
     }
-
 }

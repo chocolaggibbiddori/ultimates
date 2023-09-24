@@ -2,14 +2,13 @@ package com.ultimates.rss.dto.api.response;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 public class GameData {
-  
+
     private Long idx;
     private String userName;
     private int gameNumber;

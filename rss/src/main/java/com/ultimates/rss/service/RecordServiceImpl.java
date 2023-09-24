@@ -10,6 +10,7 @@ import com.ultimates.rss.dto.api.response.GameData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,7 +86,7 @@ public class RecordServiceImpl implements RecordService {
 
             recordList.add(recordListDto);
         }
-      
+
         return recordList;
     }
 }
