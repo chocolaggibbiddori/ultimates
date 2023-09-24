@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게임 상세</title>
+</head>
+<body>
+<div th:insert="~{fragment/search :: search}"></div>
+<br>
+<table border="2"
+       th:object="${recordDetail}"
+       th:style="${recordDetail.myResult.toString() == 'WIN' ? 'background-color: lightblue;' : 'background-color: pink;'}">
+    <caption th:text="*{myTeam.toString() == 'RED' ? '레드팀' : '블루팀'}"></caption>
+    <tr>
+        <th>티어</th>
+        <th>닉네임</th>
+        <th>챔피언</th>
+        <th>KDA</th>
+        <th>가한 피해량</th>
+        <th>받은 피해량</th>
+    </tr>
+    <tr th:each="myTeamPlayer : *{myTeamList}"
+        th:onclick="'location.href=\'' + @{/rss/{username}?condition=nickname(username=${myTeamPlayer.nickname})} + '\''"
+        style="cursor: pointer;">
+        <td th:text="${myTeamPlayer.tier}"></td>
+        <td th:text="${myTeamPlayer.nickname}"></td>
+        <td th:text="${myTeamPlayer.champName}"></td>
+        <td th:object="${myTeamPlayer.kda}">
+            <ul>
+                <li>킬 : <span th:text="*{kill}"></span></li>
+                <li>데스 : <span th:text="*{death}"></span></li>
+                <li>어시스트 : <span th:text="*{assist}"></span></li>
+                <li>평점 : <span th:text="*{rate}"></span></li>
+            </ul>
+        </td>
+        <td th:text="${myTeamPlayer.damage}"></td>
+        <td th:text="${myTeamPlayer.receivedDamage}"></td>
+    </tr>
+</table>
+<br>
+<table border="2"
+       th:object="${recordDetail}"
+       th:style="${recordDetail.myResult.toString() == 'LOSE' ? 'background-color: lightblue;' : 'background-color: pink;'}">
+    <caption th:text="*{myTeam.toString() == 'RED' ? '블루팀' : '레드팀'}"></caption>
+    <tr>
+        <th>티어</th>
+        <th>닉네임</th>
+        <th>챔피언</th>
+        <th>KDA</th>
+        <th>가한 피해량</th>
+        <th>받은 피해량</th>
+    </tr>
+    <tr th:each="enemyTeamPlayer : *{enemyTeamList}"
+        th:onclick="'location.href=\'' + @{/rss/{username}?condition=nickname(username=${enemyTeamPlayer.nickname})} + '\''"
+        style="cursor: pointer;">
+        <td th:text="${enemyTeamPlayer.tier}"></td>
+        <td th:text="${enemyTeamPlayer.nickname}"></td>
+        <td th:text="${enemyTeamPlayer.champName}"></td>
+        <td th:object="${enemyTeamPlayer.kda}">
+            <ul>
+                <li>킬 : <span th:text="*{kill}"></span></li>
+                <li>데스 : <span th:text="*{death}"></span></li>
+                <li>어시스트 : <span th:text="*{assist}"></span></li>
+                <li>평점 : <span th:text="*{rate}"></span></li>
+            </ul>
+        </td>
+        <td th:text="${enemyTeamPlayer.damage}"></td>
+        <td th:text="${enemyTeamPlayer.receivedDamage}"></td>
+    </tr>
+</table>
+</body>
+</html>

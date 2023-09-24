@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>전적 검색</title>
+</head>
+<body>
+<div th:insert="~{fragment/search :: search}"></div>
+<br>
+<h2 th:text="${username}">유저 닉네임</h2>
+<hr>
+<table border="1">
+    <caption th:style="'color: rgba(128, 128, 128, 0.3)'">Most Champion</caption>
+    <tr>
+        <th>챔피언</th>
+        <th>게임수</th>
+        <th>승률</th>
+        <th>KDA</th>
+    </tr>
+    <tr th:each="mostChamp : ${mostChampList}">
+        <td>
+            <a th:href="@{/rss/{name}?condition=champion(name=${mostChamp.champName})}">
+                <span th:text="${mostChamp.champName}">모스트 챔피언</span>
+            </a>
+        </td>
+        <td th:text="${mostChamp.playCount}">모스트 챔피언을 플레이한 수</td>
+        <td th:text="${mostChamp.rateOfWin}">모스트 챔피언 승률</td>
+        <td th:text="${mostChamp.kda}">모스트 챔피언 KDA 평점</td>
+    </tr>
+</table>
+<hr>
+<div>
+    <table border="1">
+        <caption th:style="'color: rgba(128, 128, 128, 0.3)'">Game records</caption>
+        <tr>
+            <th>승</th>
+            <th>챔피언</th>
+            <th>KDA</th>
+            <th>팀</th>
+            <th>플레이 시간</th>
+            <th>게임 상세 보기</th>
+        </tr>
+        <tr th:each="record : ${recordList}"
+            th:style="'background-color: '+ (${record.gameResult.toString()=='WIN' ? 'lightblue' : 'pink'})">
+            <td th:text="${record.gameResult}"></td>
+            <td>
+                <a th:href="@{/rss/{name}?condition=champion(name=${record.champ})}">
+                    <span th:text="${record.champ}"></span>
+                </a>
+            </td>
+            <td th:text="${record.kda}"></td>
+            <td th:text="${record.team}"></td>
+            <td th:text="${record.localDateTime}"></td>
+            <td><a th:href="@{/rss/{name}/{idx}(name=${username},idx=${record.id})}" th:text="상세보기"></a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
