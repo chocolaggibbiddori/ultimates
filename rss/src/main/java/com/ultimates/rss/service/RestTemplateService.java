@@ -64,7 +64,10 @@ public class RestTemplateService {
                 .toUri();
 
         UserData userData = restTemplate.getForObject(uri, UserData.class);
-        if (userData == null) throw new IllegalUserException("[getTier] 존재하지 않는 유저입니다.");
+        if (userData == null) {
+            log.error("[getTier] 존재하지 않는 유저입니다.");
+            throw new IllegalUserException("존재하지 않는 유저입니다.");
+        }
 
         int tierNum = userData.getTier();
         return Arrays.stream(Tier.values()).filter(t -> t.getTierNum() == tierNum).findFirst().orElse(Tier.SILVER);
@@ -81,8 +84,10 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
-        if (champDataList == null || champDataList.isEmpty())
-            throw new NonExistChampException("[getChampPlayCount] 존재하지 않는 챔프입니다.");
+        if (champDataList == null || champDataList.isEmpty()) {
+            log.error("[getChampPlayCount] 존재하지 않는 챔프입니다.");
+            throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        }
 
         return champDataList.size();
     }
@@ -98,8 +103,10 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
-        if (champDataList == null || champDataList.isEmpty())
-            throw new NonExistChampException("[getChampWin] 존재하지 않는 챔프입니다.");
+        if (champDataList == null || champDataList.isEmpty()) {
+            log.error("[getChampWin] 존재하지 않는 챔프입니다.");
+            throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        }
 
         return (int) champDataList.stream().filter(ChampData::isWin).count();
     }
@@ -115,8 +122,10 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
-        if (champDataList == null || champDataList.isEmpty())
-            throw new NonExistChampException("[getChampLose] 존재하지 않는 챔프입니다.");
+        if (champDataList == null || champDataList.isEmpty()) {
+            log.error("[getChampLose] 존재하지 않는 챔프입니다.");
+            throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        }
 
         return (int) champDataList.stream().filter(ChampData::isLose).count();
     }
@@ -131,7 +140,10 @@ public class RestTemplateService {
                 .toUri();
 
         ChampSkillData champSkillData = restTemplate.getForObject(uri, ChampSkillData.class);
-        if (champSkillData == null) throw new NonExistChampException("[getChampSkill] 존재하지 않는 챔프입니다.");
+        if (champSkillData == null) {
+            log.error("[getChampSkill] 존재하지 않는 챔프입니다.");
+            throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        }
 
         return new Skill(champSkillData.getQSkill(), champSkillData.getWSkill(), champSkillData.getESkill(), champSkillData.getRSkill());
     }
@@ -147,8 +159,10 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
-        if (champDataList == null || champDataList.isEmpty())
-            throw new NonExistChampException("[getChampKDA] 존재하지 않는 챔프입니다.");
+        if (champDataList == null || champDataList.isEmpty()) {
+            log.error("[getChampKDA] 존재하지 않는 챔프입니다.");
+            throw new NonExistChampException("존재하지 않는 챔프입니다.");
+        }
 
         int kill = 0;
         int death = 0;
@@ -173,8 +187,10 @@ public class RestTemplateService {
 
         List<GameData> gameDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<GameData>>() {
         }).getBody();
-        if (gameDataList == null || gameDataList.isEmpty())
-            throw new IllegalUserException("[getGameDataList] 존재하지 않는 유저입니다.");
+        if (gameDataList == null || gameDataList.isEmpty()) {
+            log.error("[getGameDataList] 존재하지 않는 유저입니다.");
+            throw new IllegalUserException("존재하지 않는 유저입니다.");
+        }
 
         return gameDataList;
     }
