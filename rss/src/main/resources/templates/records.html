@@ -36,7 +36,6 @@
             <th>승</th>
             <th>챔피언</th>
             <th>KDA</th>
-            <th>팀</th>
             <th>플레이 시간</th>
             <th>게임 상세 보기</th>
         </tr>
@@ -49,8 +48,7 @@
                 </a>
             </td>
             <td th:text="${record.kda}"></td>
-            <td th:text="${record.team}"></td>
-            <td th:text="${record.localDateTime}"></td>
+            <td th:text="${record.playHourTime}+'시'+${record.playMinuteTime}+'분'"></td>
             <td><a th:href="@{/rss/{name}/{idx}(name=${username},idx=${record.id})}" th:text="상세보기"></a></td>
         </tr>
     </table>

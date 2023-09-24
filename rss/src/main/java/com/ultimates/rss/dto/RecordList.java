@@ -1,33 +1,47 @@
 package com.ultimates.rss.dto;
 
 import com.ultimates.rss.GameResult;
-import com.ultimates.rss.Team;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Getter
 @ToString
 public class RecordList {
 
-    private final Long id;
-    private final LocalDateTime localDateTime;
+    private final int id;
+    private final Long playHourTime;
+    private final Long playMinuteTime;
     private final GameResult gameResult;
     private final KDA kda;
     private final String champ;
-    private final Team team;
     private final String nickname;
 
     @Builder
-    public RecordList(Long id, LocalDateTime localDateTime, GameResult gameResult, KDA kda, String champ, Team team, String nickname) {
+    public RecordList(int id, LocalDateTime startTime, LocalDateTime endTime, GameResult gameResult, KDA kda, String champ, String nickname) {
         this.id = id;
-        this.localDateTime = localDateTime;
+        this.playHourTime = playHourTime(startTime,endTime);
+        this.playMinuteTime = playMinuteTime(startTime,endTime);
         this.gameResult = gameResult;
         this.kda = kda;
         this.champ = champ;
-        this.team = team;
         this.nickname = nickname;
+    }
+
+    private Long playHourTime(LocalDateTime startTime, LocalDateTime endTime) {
+        Duration playTime = Duration.between(startTime, endTime);
+
+        long playHour = playTime.toHours();
+
+        return playHour;
+    }
+
+    private Long playMinuteTime(LocalDateTime startTime, LocalDateTime endTime) {
+        Duration playTime = Duration.between(startTime, endTime);
+
+        long playMinute = playTime.toMinutesPart();
+
+        return playMinute;
     }
 }
