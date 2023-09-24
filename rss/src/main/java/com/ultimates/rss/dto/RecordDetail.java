@@ -11,13 +11,13 @@ import java.util.List;
 @ToString
 public class RecordDetail {
 
-    private final Long id;
+    private final int id;
     private final List<Player> myTeamList;
     private final List<Player> enemyTeamList;
     private final GameResult myResult;
     private final Team myTeam;
 
-    public RecordDetail(Long id, List<Player> myTeamList, List<Player> enemyTeamList, GameResult myResult, Team myTeam) {
+    public RecordDetail(int id, List<Player> myTeamList, List<Player> enemyTeamList, GameResult myResult, Team myTeam) {
         this.id = id;
         this.myTeamList = List.copyOf(myTeamList);
         this.enemyTeamList = List.copyOf(enemyTeamList);

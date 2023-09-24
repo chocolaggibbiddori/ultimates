@@ -2,10 +2,8 @@ package com.ultimates.grs.service;
 
 import com.ultimates.grs.data.dto.ChampOddsDto;
 import com.ultimates.grs.data.dto.GameDataDto;
-import com.ultimates.grs.data.entity.ChampData;
 import com.ultimates.grs.data.entity.GameData;
 import com.ultimates.grs.repository.GameRepository;
-
 import com.ultimates.grs.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -114,7 +112,7 @@ public class GameDataService {
     }
 
     public ResponseEntity<List<GameDataDto>> getAllUserInGameData(String userName, Integer gameNumber) {
-        List<GameData> gameDataList = gameRepository.findByUserNameAndGameNumber(userName, gameNumber);
+        List<GameData> gameDataList = gameRepository.findByGameNumber(gameNumber);
         List<GameDataDto> gameDataDtoList = new ArrayList<>();
 
         for (GameData gameData : gameDataList) {
