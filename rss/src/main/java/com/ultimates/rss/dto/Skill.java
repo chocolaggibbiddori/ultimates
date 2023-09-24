@@ -2,20 +2,22 @@ package com.ultimates.rss.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class Skill {
 
-    private final String skill1;
-    private final String skill2;
-    private final String skill3;
-    private final String skill4;
+    private final String skillQ;
+    private final String skillW;
+    private final String skillE;
+    private final String skillR;
 
     @Builder
-    public Skill(String skill1, String skill2, String skill3, String skill4) {
-        this.skill1 = skill1;
-        this.skill2 = skill2;
-        this.skill3 = skill3;
-        this.skill4 = skill4;
+    public Skill(String skillQ, String skillW, String skillE, String skillR) {
+        this.skillQ = skillQ;
+        this.skillW = skillW;
+        this.skillE = skillE;
+        this.skillR = skillR;
     }
 }

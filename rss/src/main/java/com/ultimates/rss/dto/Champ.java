@@ -17,13 +17,17 @@ public class Champ {
     private final KDA kda;
 
     @Builder
-    public Champ(String champName, int playCount, int win, int lose, double rateOfWin, Skill skill, KDA kda) {
+    public Champ(String champName, int playCount, int win, int lose, Skill skill, KDA kda) {
         this.champName = champName;
         this.playCount = playCount;
         this.win = win;
         this.lose = lose;
-        this.rateOfWin = rateOfWin;
-        this.skill = skill;
         this.kda = kda;
+        this.rateOfWin = calRateOfWin();
+        this.skill = skill;
+    }
+
+    private double calRateOfWin() {
+        return (double) win / (win + lose) * 100;
     }
 }
