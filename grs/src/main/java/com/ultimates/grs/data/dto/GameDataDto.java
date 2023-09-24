@@ -1,15 +1,16 @@
 package com.ultimates.grs.data.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.ultimates.grs.data.entity.GameData;
+import lombok.*;
 
 import java.util.Date;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class GameDataDto {
+
     private Long idx;
     private String userName;
     private int gameNumber;
@@ -23,4 +24,18 @@ public class GameDataDto {
     private int atkDmg;
     private int recDmg;
 
+    public GameDataDto(GameData gd) {
+        this.idx = gd.getIdx();
+        this.userName = gd.getUserName();
+        this.gameNumber = gd.getGameNumber();
+        this.startTime = gd.getStartTime();
+        this.endTime = gd.getEndTime();
+        this.playChamp = gd.getPlayChamp();
+        this.killCnt = gd.getKillCnt();
+        this.deathCnt = gd.getDeathCnt();
+        this.assistCnt = gd.getAssistCnt();
+        this.win = gd.isWin();
+        this.atkDmg = gd.getAtkDmg();
+        this.recDmg = gd.getRecDmg();
+    }
 }

@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ChampDataDto {
+
     private Long idx;
     private String champName;
     private String qSkill;
@@ -16,5 +17,12 @@ public class ChampDataDto {
     private String eSkill;
     private String rSkill;
 
-
+    public ChampDataDto(Long idx, String champName, String qSkill, String wSkill, String eSkill, String rSkill) {
+        this.idx = idx;
+        this.champName = champName;
+        this.qSkill = qSkill;
+        this.wSkill = wSkill;
+        this.eSkill = eSkill;
+        this.rSkill = rSkill;
+    }
 }

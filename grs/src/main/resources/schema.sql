@@ -14,6 +14,7 @@ CREATE TABLE game_data (
     rec_dmg int DEFAULT NULL,
     PRIMARY KEY (idx)
 );
+
 DROP TABLE IF EXISTS champ_data;
 CREATE TABLE champ_data (
     idx BIGINT NOT NULL AUTO_INCREMENT,
@@ -24,6 +25,7 @@ CREATE TABLE champ_data (
     r_skill VARCHAR(255) NOT NULL,
     PRIMARY KEY (idx)
 );
+
 DROP TABLE IF EXISTS user_data;
 CREATE TABLE user_data (
     idx BIGINT AUTO_INCREMENT PRIMARY KEY,

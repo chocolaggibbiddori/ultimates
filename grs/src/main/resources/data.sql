@@ -1,4 +1,3 @@
-
 INSERT INTO champ_data (champ_name, q_skill, w_skill, e_skill, r_skill)
 VALUES
     ('리신', '충무공', '명량해전', '거북선 소환', '학익진'),

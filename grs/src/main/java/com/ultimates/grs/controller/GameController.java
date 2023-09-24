@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/grs")
+@RequestMapping("/grs/gamedata")
 public class GameController {
 
     private final GameDataService gameDataService;
@@ -26,29 +26,29 @@ public class GameController {
     }
 
     // 모든 게임에 대한 모든 정보
-    @GetMapping("/gamedata")
+    @GetMapping
     public ResponseEntity<List<GameDataDto>> getGameData() {
         return gameDataService.getAllGameData();
     }
 
     // 검색한 챔피언에 대한 킬데스어시
-    @GetMapping("/gamedata/champodds/{champName}")
+    @GetMapping("/champodds/{champName}")
     public ResponseEntity<List<ChampOddsDto>> getChampOdds(@PathVariable("champName") String champName) {
         return gameDataService.getChampOdds(champName);
     }
 
-    @GetMapping("/gamedata/{userName}")
+    @GetMapping("/{userName}")
     public ResponseEntity<List<GameDataDto>> getUserGameData(@PathVariable("userName") String userName) {
         return gameDataService.getUserGameData(userName);
     }
 
-    @GetMapping("/gamedata/{userName}/{gameNumber}")
+    @GetMapping("/{userName}/{gameNumber}")
     public ResponseEntity<List<GameDataDto>> getPlayWithGameData(@PathVariable("userName") String userName, @PathVariable("gameNumber") Integer gameNumber) {
-        return gameDataService.getAllUserInGameData(userName, gameNumber);
+        return gameDataService.getUserInGameData(gameNumber);
     }
 
-    @GetMapping("/gamedata/InGameData/{gameNumber}")
+    @GetMapping("/InGameData/{gameNumber}")
     public ResponseEntity<List<GameDataDto>> getSrcNumberOfGameData(@PathVariable("gameNumber") Integer gameNumber) {
-        return gameDataService.getSpectifiedGameData(gameNumber);
+        return gameDataService.getSpecifiedGameData(gameNumber);
     }
 }

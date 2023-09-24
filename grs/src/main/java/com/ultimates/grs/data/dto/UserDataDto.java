@@ -10,6 +10,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class UserDataDto {
+
     private Long idx;
     private int gameNum;
     private int lv;
