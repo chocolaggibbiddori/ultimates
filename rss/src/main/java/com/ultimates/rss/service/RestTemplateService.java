@@ -5,8 +5,10 @@ import com.ultimates.rss.dto.KDA;
 import com.ultimates.rss.dto.Skill;
 import com.ultimates.rss.dto.api.response.ChampData;
 import com.ultimates.rss.dto.api.response.ChampSkillData;
-import com.ultimates.rss.dto.api.response.UserData;
 import com.ultimates.rss.dto.api.response.GameData;
+import com.ultimates.rss.dto.api.response.UserData;
+import com.ultimates.rss.exception.IllegalUserException;
+import com.ultimates.rss.exception.NonExistChampException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -17,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Slf4j
 @Service
@@ -50,7 +51,7 @@ public class RestTemplateService {
                 .toUri();
 
         UserData userData = restTemplate.getForObject(uri, UserData.class);
-        Objects.requireNonNull(userData);
+        if (userData == null) throw new IllegalUserException("[getTier] 존재하지 않는 유저입니다.");
 
         int tierNum = userData.getTier();
         return Arrays.stream(Tier.values()).filter(t -> t.getTierNum() == tierNum).findFirst().orElse(Tier.SILVER);
@@ -67,6 +68,8 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
+        if (champDataList == null || champDataList.isEmpty()) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+
         return champDataList.size();
     }
 
@@ -81,6 +84,8 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
+        if (champDataList == null || champDataList.isEmpty()) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+
         return (int) champDataList.stream().filter(ChampData::isWin).count();
     }
 
@@ -95,6 +100,8 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
+        if (champDataList == null || champDataList.isEmpty()) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+
         return (int) champDataList.stream().filter(ChampData::isLose).count();
     }
 
@@ -108,6 +115,8 @@ public class RestTemplateService {
                 .toUri();
 
         ChampSkillData champSkillData = restTemplate.getForObject(uri, ChampSkillData.class);
+        if (champSkillData == null) throw new NonExistChampException("존재하지 않는 챔프입니다.");
+
         return new Skill(champSkillData.getQSkill(), champSkillData.getWSkill(), champSkillData.getESkill(), champSkillData.getRSkill());
     }
 
@@ -122,6 +131,7 @@ public class RestTemplateService {
 
         List<ChampData> champDataList = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<ChampData>>() {
         }).getBody();
+        if (champDataList == null || champDataList.isEmpty()) throw new NonExistChampException("존재하지 않는 챔프입니다.");
 
         int kill = 0;
         int death = 0;
