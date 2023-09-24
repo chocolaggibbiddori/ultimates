@@ -8,10 +8,9 @@ server:
 #Mysql database
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3307/ultimates?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3307/qqqq?serverTimezone=UTC
     username: root
     password: 6318
-
   # JPA
   jpa:
     database: mysql
@@ -19,4 +18,10 @@ spring:
     show-sql: true
     properties:
       hibernate:
+        ddl-auto: update
         format_sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
