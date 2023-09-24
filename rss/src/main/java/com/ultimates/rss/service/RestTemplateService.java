@@ -144,4 +144,17 @@ public class RestTemplateService {
 
         return new KDA(kill, death, assist);
     }
+
+    public List<GameData> getGameDataList(String username) {
+        URI uri = UriComponentsBuilder
+                .fromUriString(uriString)
+                .path("/grs/gamedata/{userName}")
+                .encode()
+                .build()
+                .expand(username)
+                .toUri();
+
+        return restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<List<GameData>>() {
+        }).getBody();
+    }
 }

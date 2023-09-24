@@ -1,23 +1,52 @@
 package com.ultimates.rss.dto;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @ToString
 public class MostChamp {
 
-    private final String champName;
-    private final KDA kda;
-    private final double rateOfWin;
-    private final int playCount;
+    private String champName;
+    private KDA kda;
+    private int kill;
+    private int death;
+    private int assist;
+    private double rateOfWin;
+    private int playCount;
+    private int winCount;
 
-    @Builder
-    public MostChamp(String champName, KDA kda, double rateOfWin, int playCount) {
+    public MostChamp(String champName) {
         this.champName = champName;
-        this.kda = kda;
-        this.rateOfWin = rateOfWin;
-        this.playCount = playCount;
+    }
+
+    public void addPlayCount() {
+        playCount++;
+    }
+
+    public void addWinCount() {
+        winCount++;
+    }
+
+    public double getRateOfWin() {
+        return (double) winCount / playCount * 100;
+    }
+
+    public void addKill(int kill) {
+        this.kill += kill;
+    }
+
+    public void addDeath(int death) {
+        this.death += death;
+    }
+
+    public void addAssist(int assist) {
+        this.assist += assist;
+    }
+
+    public KDA getKda() {
+        return new KDA(kill, death, assist);
     }
 }
