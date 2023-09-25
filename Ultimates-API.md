@@ -53,8 +53,6 @@ class ChampOddsDto {
 
 ---
 
-<h3>Mapping</h3>
-
 |Mapping|Functional Description|ResponseEntity<>|
 |---|---|---|
 |GetMapping("/grs/userdata")|AllUserData|List\<UserDataDto>|
