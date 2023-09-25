@@ -10,8 +10,8 @@
 
 ---
 
-```
-GameDataDto{
+```java
+class GameDataDto{
 
 	Long idx;                // DB 에서 PK로 사용하기 위한 용도 Idx 
     String userName;         // 유저이름
@@ -32,9 +32,9 @@ GameDataDto{
 
 
 ---
-```
+```java
 
-ChampOddsDto {
+class ChampOddsDto {
 
 	String playChamp; // 플레이한 챔피언 이름
     int killCnt;      // Kill 카운트
@@ -63,9 +63,9 @@ ChampOddsDto {
 
 
 ---
-```
+```java
 
-UserDataDto{
+class UserDataDto{
 
     Long idx;         // Pk로 이용하기 위한 Index
     int gameNum;      // 진행된 게임의 고유 번호 
@@ -87,9 +87,9 @@ ___
 
 ___
 
-```
+```java
 
-ChampDataDto {
+class ChampDataDto {
 
     Long idx;           // Pk로 이용하기 위한 Index
     String champName;   // 챔피언 이름
